@@ -17,6 +17,7 @@ public class PuzzleController : MonoBehaviour
     public GameObject noReplay;
     public GameObject winScreen;           // Painel de vitória (ativa quando o puzzle é completado)
     public Button replayButton;            // Botão “Replay” no winScreen
+    public Button undoButton;
     public Button restartButton;           // Botão “Jogar Novamente” no winScreen
     public Button cancelReplayButton;      // Botão para cancelar o replay (visível durante replay)
 
@@ -57,6 +58,7 @@ public class PuzzleController : MonoBehaviour
 
         // 5) Configura botões de UI (inativar elementos de win/replay no início)
         winScreen.SetActive(false);
+        undoButton.gameObject.SetActive(true);
         cancelReplayButton.gameObject.SetActive(false);
 
         // 6) Botões no winScreen
@@ -132,6 +134,7 @@ public class PuzzleController : MonoBehaviour
     void ShowWinScreen()
     {
         winScreen.SetActive(true);
+        undoButton.gameObject.SetActive(false);
     }
 
     // “Desfazer” último movimento
@@ -162,6 +165,7 @@ public class PuzzleController : MonoBehaviour
         winScreen.SetActive(false);
         noReplay.gameObject.SetActive(true);
         cancelReplayButton.gameObject.SetActive(true);
+        undoButton.gameObject.SetActive(false);
 
         // Reseta o puzzle para o estado inicial embaralhado
         ResetPuzzleToStart();
